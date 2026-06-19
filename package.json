@@ -1,0 +1,20 @@
+{
+  "name": "auto-suggest",
+  "version": "1.0.0",
+  "description": "verifying my got set -up:)\r verify\r add(plus button)\r commit with message \r push/sync",
+  "homepage": "https://github.com/revathikanchu931-png/auto-suggest#readme",
+  "bugs": {
+    "url": "https://github.com/revathikanchu931-png/auto-suggest/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/revathikanchu931-png/auto-suggest.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
