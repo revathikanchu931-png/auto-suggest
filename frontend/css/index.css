@@ -38,3 +38,17 @@ h1 {
 body{
     margin: 0px;
 }
+
+.card{
+    border: 2px solid black;
+    width: 200px;
+    text-align: center;
+    margin: 20px auto;
+}
+.card img{
+    width: 100%;
+}
+
+.card button{
+    margin-bottom: 10px;
+}
