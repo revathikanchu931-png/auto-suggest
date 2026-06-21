@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Being Infinity - Auto Suggest</title>
+    <title>Being Infinity</title>
     <link rel="stylesheet" href="../css/autosuggest.css">
 </head>
-
 <body>
 
-    <span class="gear">&#x2699;</span>
-    <span class="pill">&#x2022; online | &#x23F0; -ms</span>
+    <span class="gear" id="theme-toggle">&#x2699;</span>
+
+    <span class="pill" id="status-pill">
+        &#x2022; online | &#x23F0; -- ms
+    </span>
 
     <div class="main-content">
 
@@ -27,8 +29,8 @@
             <span class="search">&#x1F50D;</span>
 
             <input
-                type="text"
                 class="search-input"
+                type="text"
                 id="autosuggest"
                 placeholder="Start typing to search phrases..."
                 autocomplete="off"

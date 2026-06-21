@@ -1,153 +1,139 @@
 body{
     margin:0;
     background:#f5f5f5;
-    font-family:Georgia, serif;
+    font-family:Arial,sans-serif;
+    transition:0.3s;
 }
 
+body.dark{
+    background:#121212;
+    color:white;
+}
 
 .gear{
     position:fixed;
     top:20px;
     left:20px;
-    font-size:22px;
+    font-size:28px;
+    cursor:pointer;
 }
 
 .pill{
     position:fixed;
     top:20px;
     right:20px;
-    font-size:18px;
+    background:white;
+    padding:8px 15px;
+    border-radius:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
+body.dark .pill{
+    background:#1f1f1f;
+}
 
 .main-content{
     text-align:center;
-    margin-top:20px;
+    margin-top:40px;
 }
 
-
+h1{
+    font-size:60px;
+}
 
 .Being{
     color:blue;
 }
 
-h1{
-    font-size:55px;
-}
-
-
-
 .tagline{
     color:gray;
-    font-size:18px;
     margin-bottom:30px;
 }
 
-
 .search-box{
-    width:500px;
+    width:550px;
     margin:auto;
     position:relative;
 }
-
-
 
 .search{
     position:absolute;
     left:18px;
     top:13px;
-    font-size:22px;
+    font-size:20px;
 }
-
-
 
 .search-input{
     width:100%;
+    box-sizing:border-box;
     padding:12px 15px 12px 50px;
-
+    font-size:18px;
     border:3px solid blue;
     border-radius:30px;
-
-    font-size:18px;
     outline:none;
-    box-sizing:border-box;
 }
 
 .search-input:focus{
     box-shadow:0 0 10px rgba(0,0,255,0.2);
 }
 
-
-
 #search-suggestions{
     display:none;
-
     width:100%;
     margin-top:10px;
-
     background:white;
     border-radius:15px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,0.15);
-
     overflow:hidden;
-
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
     max-height:350px;
     overflow-y:auto;
-
     text-align:left;
 }
 
-
+body.dark #search-suggestions{
+    background:#1f1f1f;
+}
 
 .suggestion-row{
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     padding:14px 18px;
-
+    border-bottom:1px solid #eeeeee;
     cursor:pointer;
-
-    border-bottom:1px solid white;
-
-    transition:0.2s;
 }
 
-.suggestion-row:last-child{
-    border-bottom:none;
+body.dark .suggestion-row{
+    border-bottom:1px solid #333;
 }
 
 .suggestion-row:hover,
 .suggestion-row.active{
-    background:whitesmoke;
+    background:#eef3ff;
 }
 
-
+body.dark .suggestion-row:hover,
+body.dark .suggestion-row.active{
+    background:#2b2b2b;
+}
 
 .suggestion-item{
-    color:#333;
-    font-size:16px;
+    flex:1;
 }
-
-
 
 .suggestion-weight{
     color:gray;
     font-weight:bold;
 }
 
-
-
+.loading,
 .no-result{
     padding:15px;
     text-align:center;
     color:gray;
 }
 
-
-
-@media(max-width:600px){
+@media(max-width:700px){
 
     .search-box{
         width:90%;
@@ -155,9 +141,5 @@ h1{
 
     h1{
         font-size:40px;
-    }
-
-    .tagline{
-        font-size:16px;
     }
 }
