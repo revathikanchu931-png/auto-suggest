@@ -1,44 +1,182 @@
+var API_URL = "https://autosuggest-backend.onrender.com/api/autosuggest";
 
-//https://autosuggest-backend.onrender.com/api/autosuggest?q=a&weighted=true&algorithm=trie&limit=8
- var API_URL = "https://autosuggest-backend.onrender.com/api/autosuggest";
+var searchBar = document.getElementById("autosuggest");
+var suggestionsContainer = document.getElementById("search-suggestions");
 
- var searchBar = document.getElementById("autosuggest");
- var suggestionsContainer = document.getElementById("search-suggestions");
+var currentIndex = -1;
 
- searchBar.addEventListener("input", function() {
-    //get user tyed data
-    //use user typed data in the query parameter of the API_URL
-    //API CALL
-    //append all the fetched data to the suggestionsContainer
-     var query = searchBar.value.trim();
-    //console.log("query", query);
-     fetchSuggestions(query);
+/* Fetch suggestions */
+
+searchBar.addEventListener("input", function () {
+
+    var query = searchBar.value.trim();
+
+    currentIndex = -1;
+
+    if(query === ""){
+        suggestionsContainer.innerHTML = "";
+        suggestionsContainer.style.display = "none";
+        return;
+    }
+
+    fetchSuggestions(query);
 });
 
-                function fetchSuggestions(query) {
-                    var fullAPI = API_URL + "?q=" + query + "&weighted=true&algorithm=trie&limit=8";
-                    fetch(fullAPI)
-                        .then(function(res) {
-                            return res.json();
-                        })
-                        .then(function(data) {
-                           //onsole.log("data", data);
-                            showSuggestions(data);
-                        })
-                        .catch(function(error) {
-                            console.log("Error fetching suggestions:", error);
-                        });
-                    }
 
-                    function showSuggestions(data) {
-                        var values = data.results;
-                        if(data.count === 0) {
-                            suggestionsContainer.innerHTML = "<div>No suggestions found</div>";
-                        } else {
-                            var htmlstring = "";
-                           for (var i = 0; i < values.length; i++) {
-                                htmlstring += "<div><span class='suggestion-item'>" + values[i].text + "</span><span class='suggestion-weight'>&#x2022; " + values[i].weight + "</span></div>";
-                            } 
-                            suggestionsContainer.innerHTML = htmlstring;
-                        }
-                    }
+function fetchSuggestions(query){
+
+    var fullAPI =
+        API_URL +
+        "?q=" + query +
+        "&weighted=true" +
+        "&algorithm=trie" +
+        "&limit=8";
+
+    fetch(fullAPI)
+        .then(function(res){
+            return res.json();
+        })
+        .then(function(data){
+            showSuggestions(data);
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+}
+
+
+/* Display suggestions */
+
+function showSuggestions(data){
+
+    var values = data.results;
+
+    if(data.count === 0){
+
+        suggestionsContainer.innerHTML =
+            "<div class='no-result'>No suggestions found</div>";
+
+        suggestionsContainer.style.display = "block";
+
+        return;
+    }
+
+    var html = "";
+
+    for(var i=0;i<values.length;i++){
+
+        html +=
+            "<div class='suggestion-row'>" +
+
+                "<span class='suggestion-item'>" +
+                    values[i].text +
+                "</span>" +
+
+                "<span class='suggestion-weight'>" +
+                    values[i].weight +
+                "</span>" +
+
+            "</div>";
+    }
+
+    suggestionsContainer.innerHTML = html;
+    suggestionsContainer.style.display = "block";
+
+    addClickEvents();
+}
+
+
+/* Click selection */
+
+function addClickEvents(){
+
+    var rows = document.querySelectorAll(".suggestion-row");
+
+    rows.forEach(function(row){
+
+        row.addEventListener("click", function(){
+
+            searchBar.value =
+                row.querySelector(".suggestion-item").innerText;
+
+            suggestionsContainer.style.display = "none";
+        });
+    });
+}
+
+
+/* Keyboard navigation */
+
+searchBar.addEventListener("keydown", function(e){
+
+    var rows = document.querySelectorAll(".suggestion-row");
+
+    if(rows.length === 0) return;
+
+
+    if(e.key === "ArrowDown"){
+
+        e.preventDefault();
+
+        currentIndex++;
+
+        if(currentIndex >= rows.length){
+            currentIndex = 0;
+        }
+
+        updateActive(rows);
+    }
+
+
+    else if(e.key === "ArrowUp"){
+
+        e.preventDefault();
+
+        currentIndex--;
+
+        if(currentIndex < 0){
+            currentIndex = rows.length - 1;
+        }
+
+        updateActive(rows);
+    }
+
+
+    else if(e.key === "Enter"){
+
+        if(currentIndex > -1){
+
+            e.preventDefault();
+
+            searchBar.value =
+                rows[currentIndex]
+                .querySelector(".suggestion-item")
+                .innerText;
+
+            suggestionsContainer.style.display = "none";
+        }
+    }
+});
+
+
+function updateActive(rows){
+
+    rows.forEach(function(row){
+        row.classList.remove("active");
+    });
+
+    rows[currentIndex].classList.add("active");
+}
+
+
+/* Hide dropdown when clicking outside */
+
+document.addEventListener("click", function(e){
+
+    if(
+        !searchBar.contains(e.target) &&
+        !suggestionsContainer.contains(e.target)
+    ){
+        suggestionsContainer.style.display = "none";
+    }
+});

@@ -3,21 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Being Infinity - Auto Suggest</title>
     <link rel="stylesheet" href="../css/autosuggest.css">
 </head>
+
 <body>
+
     <span class="gear">&#x2699;</span>
-    <span class="pill">&#x2022; online|&#x23F0; -ms</span>
+    <span class="pill">&#x2022; online | &#x23F0; -ms</span>
+
     <div class="main-content">
-    <h1><span class="Being">Being</span>Infinity</h1>
-    <p class="tagline"> one million phrases.Four algorithms.Prefix Based Auto Suggest</p>
-    <div>
-    <span class="search">&#x1F50D;</span>
-    <input class="search-input" type="text" id="autosuggest" placeholder="Start typing to search phrases...">
-    <div id="search-suggestions"></div>
+
+        <h1>
+            <span class="Being">Being</span>Infinity
+        </h1>
+
+        <p class="tagline">
+            one million phrases. Four algorithms. Prefix Based Auto Suggest
+        </p>
+
+        <div class="search-box">
+
+            <span class="search">&#x1F50D;</span>
+
+            <input
+                type="text"
+                class="search-input"
+                id="autosuggest"
+                placeholder="Start typing to search phrases..."
+                autocomplete="off"
+            >
+
+            <div id="search-suggestions"></div>
+
+        </div>
+
     </div>
- </div>
- <script src="../js/autosuggest.js"></script>
+
+    <script src="../js/autosuggest.js"></script>
+
 </body>
 </html>

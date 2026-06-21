@@ -1,33 +1,163 @@
+body{
+    margin:0;
+    background:#f5f5f5;
+    font-family:Georgia, serif;
+}
+
+
 .gear{
-    position: fixed;
-    top: 20px;
-    left: 20px;
+    position:fixed;
+    top:20px;
+    left:20px;
+    font-size:22px;
 }
+
 .pill{
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    position:fixed;
+    top:20px;
+    right:20px;
+    font-size:18px;
 }
+
+
 .main-content{
-    text-align: center;
+    text-align:center;
+    margin-top:20px;
 }
+
+
+
 .Being{
-    color: blue; 
+    color:blue;
 }
-.search-input{
-    padding-left: 30px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 200px;
-    border: 3px solid blue;
-    border-radius: 20px;
+
+h1{
+    font-size:55px;
 }
+
+
+
 .tagline{
-    color: gray;
-    font-size: 14px;
+    color:gray;
+    font-size:18px;
+    margin-bottom:30px;
 }
-.search{
+
+
+.search-box{
+    width:500px;
+    margin:auto;
     position:relative;
-    left: 30px;
+}
+
+
+
+.search{
+    position:absolute;
+    left:18px;
+    top:13px;
+    font-size:22px;
+}
+
+
+
+.search-input{
+    width:100%;
+    padding:12px 15px 12px 50px;
+
+    border:3px solid blue;
+    border-radius:30px;
+
+    font-size:18px;
+    outline:none;
+    box-sizing:border-box;
+}
+
+.search-input:focus{
+    box-shadow:0 0 10px rgba(0,0,255,0.2);
+}
+
+
+
+#search-suggestions{
+    display:none;
+
+    width:100%;
+    margin-top:10px;
+
+    background:white;
+    border-radius:15px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+
+    overflow:hidden;
+
+    max-height:350px;
+    overflow-y:auto;
+
+    text-align:left;
+}
+
+
+
+.suggestion-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:14px 18px;
+
+    cursor:pointer;
+
+    border-bottom:1px solid white;
+
+    transition:0.2s;
+}
+
+.suggestion-row:last-child{
+    border-bottom:none;
+}
+
+.suggestion-row:hover,
+.suggestion-row.active{
+    background:whitesmoke;
+}
+
+
+
+.suggestion-item{
+    color:#333;
+    font-size:16px;
+}
+
+
+
+.suggestion-weight{
+    color:gray;
+    font-weight:bold;
+}
+
+
+
+.no-result{
+    padding:15px;
+    text-align:center;
+    color:gray;
+}
+
+
+
+@media(max-width:600px){
+
+    .search-box{
+        width:90%;
+    }
+
+    h1{
+        font-size:40px;
+    }
+
+    .tagline{
+        font-size:16px;
+    }
 }
